@@ -1,865 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pronoun Usage Analysis in Online Language Tutoring</title>
-  <style>
-      body {
-          font-family: 'Times New Roman', serif;
-          line-height: 1.6;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-          background-color: #ffffff;
-          color: #333;
-      }
-      
-      .header {
-          text-align: center;
-          border-bottom: 3px solid #2c3e50;
-          padding-bottom: 20px;
-          margin-bottom: 30px;
-      }
-      
-      h1 {
-          font-size: 24px;
-          font-weight: bold;
-          margin-bottom: 10px;
-          color: #2c3e50;
-      }
-      
-      h2 {
-          font-size: 18px;
-          font-weight: bold;
-          color: #34495e;
-          border-bottom: 2px solid #bdc3c7;
-          padding-bottom: 5px;
-          margin-top: 30px;
-          margin-bottom: 15px;
-      }
-      
-      h3 {
-          font-size: 16px;
-          font-weight: bold;
-          color: #2c3e50;
-          margin-top: 20px;
-          margin-bottom: 10px;
-      }
-      
-      .abstract {
-          background-color: #f8f9fa;
-          padding: 20px;
-          border-left: 4px solid #3498db;
-          margin-bottom: 30px;
-          font-style: italic;
-      }
-      
-      table {
-          width: 100%;
-          border-collapse: collapse;
-          margin: 15px 0;
-          font-size: 14px;
-      }
-      
-      th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: center;
-      }
-      
-      th {
-          background-color: #f2f2f2;
-          font-weight: bold;
-      }
-      
-      .stats-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
-          margin: 20px 0;
-      }
-      
-      .stats-box {
-          background-color: #f8f9fa;
-          padding: 15px;
-          border-radius: 5px;
-          border: 1px solid #dee2e6;
-      }
-      
-      .significance {
-          font-weight: bold;
-      }
-      
-      .sig-high { color: #e74c3c; }
-      .sig-medium { color: #f39c12; }
-      .sig-low { color: #27ae60; }
-      .sig-none { color: #7f8c8d; }
-      
-      .correlation-table {
-          font-size: 12px;
-      }
-      
-      .price-group {
-          background-color: #ecf0f1;
-          padding: 10px;
-          margin: 10px 0;
-          border-radius: 3px;
-      }
-      
-      .footer {
-          margin-top: 40px;
-          padding-top: 20px;
-          border-top: 2px solid #bdc3c7;
-          font-size: 12px;
-          color: #7f8c8d;
-      }
-      
-      .comparison-section {
-          background-color: #fff5f5;
-          padding: 20px;
-          border-radius: 5px;
-          margin: 20px 0;
-      }
-      
-      .data-note {
-          background-color: #d4edda;
-          border: 1px solid #c3e6cb;
-          padding: 15px;
-          border-radius: 5px;
-          margin: 15px 0;
-      }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Analysis Report: Pronoun Usage in Online Language Tutoring</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .sig-high {
+            font-weight: bold;
+            color: #c0392b;
+        }
+        
+        .sig-medium {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        
+        .sig-low {
+            color: #27ae60;
+        }
+        
+        .abstract {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #333;
+            margin: 20px 0;
+        }
+        
+        .note {
+            font-size: 12px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fffacd;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #999;
+            font-size: 12px;
+            text-align: center;
+            color: #666;
+        }
+        
+        ul {
+            margin-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-      <h1>Pronoun Usage Analysis in Online Language Tutoring: Price-Language Relationship Study</h1>
-      <p><strong>Statistical Analysis Report</strong></p>
-  </div>
 
-  <div class="abstract">
-      <h3>Abstract</h3>
-      <p>This study examines the relationship between pronoun usage patterns and pricing strategies among online language tutors across different demographics. The analysis encompasses English and Chinese tutors of both genders, investigating correlations between first-person singular, first-person plural, and second-person pronoun usage with hourly rates (all prices in HKD). Statistical significance testing and group comparisons reveal notable patterns in self-presentation strategies across price segments.</p>
-  </div>
+<h1>Statistical Analysis Report: Pronoun Usage and Pricing Strategies in Online Language Tutoring</h1>
 
-  <div class="data-note">
-      <h3>Complete Dataset Coverage</h3>
-      <p><strong>Update:</strong> This report now includes complete data for all demographic groups. All pricing data is reported in Hong Kong Dollars (HKD). 
-        All comparision between genders are based on 150 samples with random seed 42. The Chinese is based on the versions were all come from China, Taiwan, Hong Kong or Macau</p>
-          <p><strong>Typo:</strong> Total pronouns refers to all 1st person pronouns, no matter singular or plural. Second person is not counted</p>
-  </div>
+<div class="abstract">
+    <strong>Abstract:</strong> This study examines the relationship between pronoun usage patterns and hourly pricing among 651 online language tutors across two languages (English and Chinese) and both genders. Using correlation analysis, ANOVA, and non-parametric tests, we identify significant associations between first-person pronoun density and pricing strategies. Results indicate that reduced self-referential language correlates with higher pricing, suggesting linguistic markers of professional positioning. Gender and language differences are also explored, revealing systematic variation in pronoun usage across demographic groups.
+</div>
 
-  <h2>1. Study Overview</h2>
-  <div class="stats-grid">
-      <div class="stats-box">
-          <h3>English Male Tutors</h3>
-          <p><strong>Sample Size:</strong> 171</p>
-          <p><strong>Price Range:</strong> HKD $23.00 - $541.00</p>
-          <p><strong>Mean Price:</strong> HKD $208.15</p>
-          <p><strong>Median Price:</strong> HKD $195.00</p>
-      </div>
-      <div class="stats-box">
-          <h3>English Female Tutors</h3>
-          <p><strong>Sample Size:</strong> 156</p>
-          <p><strong>Price Range:</strong> HKD $23.00 - $430.00</p>
-          <p><strong>Mean Price:</strong> HKD $190.69</p>
-          <p><strong>Median Price:</strong> HKD $195.00</p>
-      </div>
-      <div class="stats-box">
-          <h3>Chinese Female Tutors</h3>
-          <p><strong>Sample Size:</strong> 170</p>
-          <p><strong>Price Range:</strong> HKD $39.00 - $391.00</p>
-          <p><strong>Mean Price:</strong> HKD $154.53</p>
-          <p><strong>Median Price:</strong> HKD $141.00</p>
-      </div>
-      <div class="stats-box">
-          <h3>Chinese Male Tutors</h3>
-          <p><strong>Sample Size:</strong> 150</p>
-          <p><strong>Price Range:</strong> HKD $23.00 - $390.00</p>
-          <p><strong>Mean Price:</strong> HKD $134.85</p>
-          <p><strong>Median Price:</strong> HKD $117.00</p>
-      </div>
-  </div>
+<h2>1. Introduction and Variable Definitions</h2>
 
-  <h2>2. Pronoun Usage Patterns by Demographics</h2>
-  
-  <h3>2.1 Mean Pronoun Density (per 1000 words)</h3>
-  <table>
-      <thead>
-          <tr>
-              <th>Group</th>
-              <th>Total Pronouns</th>
-              <th>1st Person Singular</th>
-              <th>1st Person Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>English Male</td>
-              <td>71.93</td>
-              <td>66.11</td>
-              <td>5.81</td>
-              <td>34.38</td>
-          </tr>
-          <tr>
-              <td>English Female</td>
-              <td>80.43</td>
-              <td>73.91</td>
-              <td>6.52</td>
-              <td>32.87</td>
-          </tr>
-          <tr>
-              <td>Chinese Female</td>
-              <td>67.86</td>
-              <td>62.52</td>
-              <td>5.34</td>
-              <td>34.45</td>
-          </tr>
-          <tr>
-              <td>Chinese Male</td>
-              <td>62.25</td>
-              <td>58.19</td>
-              <td>4.06</td>
-              <td>33.11</td>
-          </tr>
-      </tbody>
-  </table>
+<p>This analysis investigates the linguistic strategies employed by online language tutors in their self-introductions, specifically examining pronoun usage as a potential indicator of professional positioning and pricing strategy. The dataset comprises 651 tutors offering English (n=327) and Chinese (n=324) language instruction.</p>
 
-  <h2>3. Price-Pronoun Correlations</h2>
-  <h3> Linear Correlation <h3>
-  <h4> a) English Male Tutors -  Correlation with Price (HKD)</h4>
-  <table class="correlation-table">
-      <thead>
-          <tr>
-              <th>Pronoun Type</th>
-              <th>Correlation (r)</th>
-              <th>Pearson p-value</th>
-              <th>Spearman p-value</th>
-              <th>Significance</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>2nd Person Density</td>
-              <td>0.236</td>
-              <td>0.0019</td>
-              <td>0.0013</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Raw 2nd Person</td>
-              <td>0.225</td>
-              <td>0.0031</td>
-              <td>0.0004</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Plural 1st Density</td>
-              <td>0.214</td>
-              <td>0.0049</td>
-              <td>0.0008</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Raw Plural 1st</td>
-              <td>0.206</td>
-              <td>0.0070</td>
-              <td>0.0002</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Singular 1st Density</td>
-              <td>-0.190</td>
-              <td>0.0126</td>
-              <td>0.0064</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-      </tbody>
-  </table>
+<h3>1.1 Key Variables</h3>
 
-  <h4> b) English Female Tutors - Correlation with Price (HKD)</h4>
-  <table class="correlation-table">
-      <thead>
-          <tr>
-              <th>Pronoun Type</th>
-              <th>Correlation (r)</th>
-              <th>Pearson p-value</th>
-              <th>Spearman p-value</th>
-              <th>Significance</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Singular 1st Density</td>
-              <td>-0.226</td>
-              <td>0.0046</td>
-              <td>0.0011</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Total Pronoun Density</td>
-              <td>-0.205</td>
-              <td>0.0103</td>
-              <td>0.0018</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-          <tr>
-              <td>Raw 2nd Person</td>
-              <td>0.208</td>
-              <td>0.0090</td>
-              <td>0.0245</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-          <tr>
-              <td>Raw Plural 1st</td>
-              <td>0.187</td>
-              <td>0.0197</td>
-              <td>0.0020</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-      </tbody>
-  </table>
+<ul>
+    <li><strong>Price_per_hour:</strong> Hourly rate in Hong Kong Dollars (HKD)</li>
+    <li><strong>perthousand_all_pronouns:</strong> Total pronoun density per 1,000 words</li>
+    <li><strong>first_pronoun_perthousand:</strong> First-person pronoun density (I, we, me, us)</li>
+    <li><strong>pronoun_perthousand_second:</strong> Second-person pronoun density (you, your)</li>
+    <li><strong>pronoun_first_perthousand_plur:</strong> Plural first-person pronouns (we, us)</li>
+    <li><strong>pronoun_perthousand_sing:</strong> Singular first-person pronouns (I, me)</li>
+</ul>
 
-  <h4> c) Chinese Female Tutors - Correlation with Price (HKD)</h4>
-  <table class="correlation-table">
-      <thead>
-          <tr>
-              <th>Pronoun Type</th>
-              <th>Correlation (r)</th>
-              <th>Pearson p-value</th>
-              <th>Spearman p-value</th>
-              <th>Significance</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Singular 1st Density</td>
-              <td>-0.218</td>
-              <td>0.0043</td>
-              <td>0.0173</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Total Pronoun Density</td>
-              <td>-0.174</td>
-              <td>0.0229</td>
-              <td>0.0714</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-          <tr>
-              <td>Plural 1st Density</td>
-              <td>0.110</td>
-              <td>0.1551</td>
-              <td>0.0078</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-      </tbody>
-  </table>
+<h3>1.2 Sample Composition</h3>
 
-  <h4> d) Chinese Male Tutors - Correlation with Price (HKD)</h4>
-  <table class="correlation-table">
-      <thead>
-          <tr>
-              <th>Pronoun Type</th>
-              <th>Correlation (r)</th>
-              <th>Pearson p-value</th>
-              <th>Spearman p-value</th>
-              <th>Significance</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Singular 1st Density</td>
-              <td>-0.238</td>
-              <td>0.0033</td>
-              <td>0.0004</td>
-              <td class="significance sig-high">***</td>
-          </tr>
-          <tr>
-              <td>Total Pronoun Density</td>
-              <td>-0.193</td>
-              <td>0.0182</td>
-              <td>0.0057</td>
-              <td class="significance sig-high">**</td>
-          </tr>
-          <tr>
-              <td>Raw Plural 1st</td>
-              <td>0.171</td>
-              <td>0.0368</td>
-              <td>0.1131</td>
-              <td class="significance sig-medium">*</td>
-          </tr>
-          <tr>
-              <td>Raw 2nd Person</td>
-              <td>0.154</td>
-              <td>0.0591</td>
-              <td>0.1340</td>
-              <td class="significance sig-none">ns</td>
-          </tr>
-          <tr>
-              <td>Plural 1st Density</td>
-              <td>0.138</td>
-              <td>0.0922</td>
-              <td>0.1641</td>
-              <td class="significance sig-none">ns</td>
-          </tr>
-      </tbody>
-  </table>
+<table>
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Sample Size</th>
+            <th>Mean Price (HKD)</th>
+            <th>Price Range (HKD)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chinese Female</td>
+            <td>170</td>
+            <td>154.53</td>
+            <td>39.00 – 391.00</td>
+        </tr>
+        <tr>
+            <td>Chinese Male</td>
+            <td>154</td>
+            <td>134.38</td>
+            <td>23.00 – 390.00</td>
+        </tr>
+        <tr>
+            <td>English Female</td>
+            <td>156</td>
+            <td>190.69</td>
+            <td>23.00 – 430.00</td>
+        </tr>
+        <tr>
+            <td>English Male</td>
+            <td>170</td>
+            <td>208.15</td>
+            <td>23.00 – 541.00</td>
+        </tr>
+    </tbody>
+</table>
 
-  <h2>4. Price Group Analysis</h2>
-  
-  <h3>4.1 English Male Tutors - Price Groups (HKD)</h3>
-  <table>
-      <thead>
-          <tr>
-              <th>Price Group</th>
-              <th>Sample Size</th>
-              <th>Total Pronouns</th>
-              <th>1st Singular</th>
-              <th>1st Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>$0-50</td>
-              <td>18</td>
-              <td>72.39</td>
-              <td>69.83</td>
-              <td>2.56</td>
-              <td>29.71</td>
-          </tr>
-          <tr>
-              <td>$50-100</td>
-              <td>39</td>
-              <td>68.24</td>
-              <td>63.97</td>
-              <td>4.27</td>
-              <td>34.56</td>
-          </tr>
-          <tr>
-              <td>$100-150</td>
-              <td>46</td>
-              <td>59.79</td>
-              <td>56.07</td>
-              <td>3.72</td>
-              <td>30.34</td>
-          </tr>
-          <tr>
-              <td>$150-200</td>
-              <td>27</td>
-              <td>59.14</td>
-              <td>54.34</td>
-              <td>4.80</td>
-              <td>32.39</td>
-          </tr>
-          <tr>
-              <td>$200+</td>
-              <td>24</td>
-              <td>56.32</td>
-              <td>50.89</td>
-              <td>5.44</td>
-              <td>36.90</td>
-          </tr>
-      </tbody>
-  </table>
+<h2>2. Descriptive Statistics and Distributional Properties</h2>
 
-  <h3>4.2 English Female Tutors - Price Groups (HKD)</h3>
-  <table>
-      <thead>
-          <tr>
-              <th>Price Group</th>
-              <th>Sample Size</th>
-              <th>Total Pronouns</th>
-              <th>1st Singular</th>
-              <th>1st Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>$0-50</td>
-              <td>6</td>
-              <td>95.21</td>
-              <td>87.31</td>
-              <td>7.90</td>
-              <td>24.22</td>
-          </tr>
-          <tr>
-              <td>$50-100</td>
-              <td>11</td>
-              <td>84.62</td>
-              <td>79.51</td>
-              <td>5.11</td>
-              <td>31.24</td>
-          </tr>
-          <tr>
-              <td>$100-150</td>
-              <td>20</td>
-              <td>85.33</td>
-              <td>80.59</td>
-              <td>4.74</td>
-              <td>33.24</td>
-          </tr>
-          <tr>
-              <td>$150-200</td>
-              <td>54</td>
-              <td>82.16</td>
-              <td>75.69</td>
-              <td>6.47</td>
-              <td>32.35</td>
-          </tr>
-          <tr>
-              <td>$200+</td>
-              <td>65</td>
-              <td>75.40</td>
-              <td>68.18</td>
-              <td>7.22</td>
-              <td>34.27</td>
-          </tr>
-      </tbody>
-  </table>
+<p>Shapiro-Wilk normality tests reveal that pricing data significantly deviates from normality across all groups (p < 0.05), necessitating the use of both parametric and non-parametric statistical methods. First-person pronoun densities generally follow normal distributions, while plural first-person and singular pronoun metrics show non-normal distributions, likely due to zero-inflation and right-skewness.</p>
 
-  <h3>4.3 Chinese Female Tutors - Price Groups (HKD)</h3>
-  <table>
-      <thead>
-          <tr>
-              <th>Price Group</th>
-              <th>Sample Size</th>
-              <th>Total Pronouns</th>
-              <th>1st Singular</th>
-              <th>1st Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>$0-50</td>
-              <td>3</td>
-              <td>72.57</td>
-              <td>69.73</td>
-              <td>2.84</td>
-              <td>65.64</td>
-          </tr>
-          <tr>
-              <td>$50-100</td>
-              <td>25</td>
-              <td>70.08</td>
-              <td>67.07</td>
-              <td>3.01</td>
-              <td>31.01</td>
-          </tr>
-          <tr>
-              <td>$100-150</td>
-              <td>65</td>
-              <td>70.39</td>
-              <td>65.24</td>
-              <td>5.15</td>
-              <td>34.52</td>
-          </tr>
-          <tr>
-              <td>$150-200</td>
-              <td>45</td>
-              <td>70.25</td>
-              <td>63.71</td>
-              <td>6.54</td>
-              <td>33.34</td>
-          </tr>
-          <tr>
-              <td>$200+</td>
-              <td>32</td>
-              <td>57.18</td>
-              <td>51.11</td>
-              <td>6.07</td>
-              <td>35.62</td>
-          </tr>
-      </tbody>
-  </table>
+<h3>2.1 Pronoun Usage by Demographic Group</h3>
 
-  <h3>4.4 Chinese Male Tutors - Price Groups (HKD)</h3>
-  <table>
-      <thead>
-          <tr>
-              <th>Price Group</th>
-              <th>Sample Size</th>
-              <th>Total Pronouns</th>
-              <th>1st Singular</th>
-              <th>1st Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>$0-50</td>
-              <td>18</td>
-              <td>72.39</td>
-              <td>69.83</td>
-              <td>2.56</td>
-              <td>29.71</td>
-          </tr>
-          <tr>
-              <td>$50-100</td>
-              <td>37</td>
-              <td>67.11</td>
-              <td>63.16</td>
-              <td>3.95</td>
-              <td>35.76</td>
-          </tr>
-          <tr>
-              <td>$100-150</td>
-              <td>45</td>
-              <td>59.58</td>
-              <td>55.78</td>
-              <td>3.81</td>
-              <td>30.58</td>
-          </tr>
-          <tr>
-              <td>$150-200</td>
-              <td>27</td>
-              <td>59.14</td>
-              <td>54.34</td>
-              <td>4.80</td>
-              <td>32.39</td>
-          </tr>
-          <tr>
-              <td>$200+</td>
-              <td>23</td>
-              <td>55.35</td>
-              <td>50.31</td>
-              <td>5.04</td>
-              <td>37.30</td>
-          </tr>
-      </tbody>
-  </table>
+<table>
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Total Pronouns</th>
+            <th>1st Person</th>
+            <th>2nd Person</th>
+            <th>Plural 1st</th>
+            <th>Singular 1st</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chinese F</td>
+            <td>102.31</td>
+            <td>67.86</td>
+            <td>34.45</td>
+            <td>5.34</td>
+            <td>1.32</td>
+        </tr>
+        <tr>
+            <td>Chinese M</td>
+            <td>95.46</td>
+            <td>62.75</td>
+            <td>32.72</td>
+            <td>4.18</td>
+            <td>1.34</td>
+        </tr>
+        <tr>
+            <td>English F</td>
+            <td>113.30</td>
+            <td>80.43</td>
+            <td>32.87</td>
+            <td>6.52</td>
+            <td>73.91</td>
+        </tr>
+        <tr>
+            <td>English M</td>
+            <td>106.50</td>
+            <td>72.00</td>
+            <td>34.50</td>
+            <td>5.79</td>
+            <td>66.21</td>
+        </tr>
+    </tbody>
+</table>
 
-  <h2>5. Gender Comparisons</h2>
-  
-  <div class="comparison-section">
-      <h3>5.1 English Tutors: Male vs Female</h3>
-      <table>
-          <thead>
-              <tr>
-                  <th>Pronoun Type</th>
-                  <th>Female Mean</th>
-                  <th>Male Mean</th>
-                  <th>t-test p-value</th>
-                  <th>Mann-Whitney p-value</th>
-                  <th>Cohen's d</th>
-                  <th>Significance</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Total Pronouns</td>
-                  <td>80.22</td>
-                  <td>72.94</td>
-                  <td>0.0028</td>
-                  <td>0.0025</td>
-                  <td>0.35</td>
-                  <td class="significance sig-high">**</td>
-              </tr>
-              <tr>
-                  <td>1st Singular</td>
-                  <td>73.93</td>
-                  <td>66.87</td>
-                  <td>0.0043</td>
-                  <td>0.0050</td>
-                  <td>0.33</td>
-                  <td class="significance sig-high">**</td>
-              </tr>
-              <tr>
-                  <td>1st Plural</td>
-                  <td>6.29</td>
-                  <td>6.07</td>
-                  <td>0.7498</td>
-                  <td>0.5485</td>
-                  <td>0.04</td>
-                  <td class="significance sig-none">ns</td>
-              </tr>
-              <tr>
-                  <td>2nd Person</td>
-                  <td>32.49</td>
-                  <td>34.34</td>
-                  <td>0.3592</td>
-                  <td>0.6667</td>
-                  <td>-0.11</td>
-                  <td class="significance sig-none">ns</td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+<div class="note">
+    <strong>Note:</strong> English tutors show substantially higher singular first-person pronoun usage (66-74 per 1,000 words) compared to Chinese tutors (1.3-1.4 per 1,000 words), likely reflecting language-specific grammatical conventions and cultural communication norms.
+</div>
 
-  <div class="comparison-section">
-      <h3>5.2 Chinese Tutors: Male vs Female (Comparative Dataset)</h3>
-      <table>
-          <thead>
-              <tr>
-                  <th>Pronoun Type</th>
-                  <th>Female Mean</th>
-                  <th>Male Mean</th>
-                  <th>t-test p-value</th>
-                  <th>Mann-Whitney p-value</th>
-                  <th>Cohen's d</th>
-                  <th>Significance</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Total Pronouns</td>
-                  <td>68.24</td>
-                  <td>62.25</td>
-                  <td>0.0181</td>
-                  <td>0.0110</td>
-                  <td>0.27</td>
-                  <td class="significance sig-medium">*</td>
-              </tr>
-              <tr>
-                  <td>1st Singular</td>
-                  <td>62.61</td>
-                  <td>58.19</td>
-                  <td>0.0685</td>
-                  <td>0.0427</td>
-                  <td>0.21</td>
-                  <td class="significance sig-medium">*</td>
-              </tr>
-              <tr>
-                  <td>1st Plural</td>
-                  <td>5.63</td>
-                  <td>4.06</td>
-                  <td>0.0345</td>
-                  <td>0.1257</td>
-                  <td>0.25</td>
-                  <td class="significance sig-medium">*</td>
-              </tr>
-              <tr>
-                  <td>2nd Person</td>
-                  <td>35.46</td>
-                  <td>33.11</td>
-                  <td>0.2578</td>
-                  <td>0.2520</td>
-                  <td>0.13</td>
-                  <td class="significance sig-none">ns</td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+<h2>3. Correlation Analysis: Pronoun Usage and Pricing</h2>
 
-  <h2>6. ANOVA Results - Price Group Differences</h2>
-  <table>
-      <thead>
-          <tr>
-              <th>Group</th>
-              <th>Total Pronouns</th>
-              <th>1st Singular</th>
-              <th>1st Plural</th>
-              <th>2nd Person</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>English Male</td>
-              <td>p=0.0988 (ns)</td>
-              <td>p=0.0143 (*)</td>
-              <td>p=0.0415 (*)</td>
-              <td>p=0.0127 (*)</td>
-          </tr>
-          <tr>
-              <td>English Female</td>
-              <td>p=0.0809 (ns)</td>
-              <td>p=0.0431 (*)</td>
-              <td>p=0.4541 (ns)</td>
-              <td>p=0.6387 (ns)</td>
-          </tr>
-          <tr>
-              <td>Chinese Female</td>
-              <td>p=0.1047 (ns)</td>
-              <td>p=0.0384 (*)</td>
-              <td>p=0.3692 (ns)</td>
-              <td>p=0.0508 (ns)</td>
-          </tr>
-          <tr>
-              <td>Chinese Male</td>
-              <td>p=0.0165 (*)</td>
-              <td>p=0.0022 (**)</td>
-              <td>p=0.4830 (ns)</td>
-              <td>p=0.3716 (ns)</td>
-          </tr>
-      </tbody>
-  </table>
+<p>Pearson correlation coefficients were calculated to examine linear relationships between pronoun metrics and hourly rates. The analysis reveals consistent negative correlations between first-person pronoun usage and pricing across most demographic groups, suggesting that tutors commanding higher rates employ less self-focused language.</p>
 
-  <h2>7. Key Findings</h2>
-  <div class="stats-grid">
-      <div class="stats-box">
-          <h3>English Male Tutors</h3>
-          <ul>
-              <li>Strong positive correlation between 2nd person pronouns and price (r=0.236, p&lt;0.01)</li>
-              <li>Negative correlation with 1st person singular pronouns (r=-0.190, p&lt;0.05)</li>
-              <li>Higher-priced tutors use more "you" and "we", less "I"</li>
-          </ul>
-      </div>
-      <div class="stats-box">
-          <h3>English Female Tutors</h3>
-          <ul>
-              <li>Strong negative correlation with 1st person singular (r=-0.226, p&lt;0.01)</li>
-              <li>Higher-priced female tutors use significantly less "I"</li>
-              <li>Similar pattern to males but stronger effect</li>
-          </ul>
-      </div>
-      <div class="stats-box">
-          <h3>Chinese Female Tutors</h3>
-          <ul>
-              <li>Consistent negative correlation with 1st person singular (r=-0.218, p&lt;0.01)</li>
-              <li>Cross-cultural consistency in pronoun-price relationship</li>
-              <li>Less self-focused language at higher price points</li>
-          </ul>
-      </div>
-      <div class="stats-box">
-          <h3>Chinese Male Tutors</h3>
-          <ul>
-              <li><strong>Strong</strong> negative correlation with 1st person singular (r=-0.238, p&lt;0.01)</li>
-              <li>Significant negative correlation with total pronoun density (r=-0.193, p&lt;0.05)</li>
-              <li>Positive correlation with raw plural 1st person pronouns</li>
-              <li>Lowest mean pricing among all groups (HKD $134.85)</li>
-          </ul>
-      </div>
-  </div>
+<h3>3.1 Key Correlation Findings</h3>
 
-  <h3>7.1 Cross-Cultural and Gender Patterns</h3>
-  <div class="stats-grid">
-      <div class="stats-box">
-          <h3>Universal Patterns</h3>
-          <ul>
-              <li>All groups show negative correlation between 1st person singular and price</li>
-              <li>Chinese male tutors show strong effect (r=-0.238, p&lt;0.01)</li>
-              <li>Consistent pattern: higher prices = less "I", more professional tone</li>
-              <li>English tutors command higher prices than Chinese tutors</li>
-          </ul>
-      </div>
-      <div class="stats-box">
-          <h3>Gender Differences</h3>
-          <ul>
-              <li>Females consistently use more pronouns overall across cultures</li>
-              <li>English: Female (80.43) vs Male (71.93) pronouns per 1000 words</li>
-              <li>Chinese: Female (67.86) vs Male (62.25) pronouns per 1000 words</li>
-              <li>Gender gap consistent across both language groups</li>
-          </ul>
-      </div>
-  </div>
+<table>
+    <thead>
+        <tr>
+            <th>Group</th>
+            <th>Variable</th>
+            <th>Pearson r</th>
+            <th>p-value</th>
+            <th>Interpretation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Chinese F</td>
+            <td>first_pronoun_perthousand</td>
+            <td>-0.174</td>
+            <td class="sig-medium">0.0229*</td>
+            <td>Weak negative correlation</td>
+        </tr>
+        <tr>
+            <td>Chinese M</td>
+            <td>first_pronoun_perthousand</td>
+            <td>-0.197</td>
+            <td class="sig-medium">0.0142*</td>
+            <td>Weak negative correlation</td>
+        </tr>
+        <tr>
+            <td>English F</td>
+            <td>pronoun_perthousand_sing</td>
+            <td>-0.226</td>
+            <td class="sig-high">0.0046**</td>
+            <td>Moderate negative correlation</td>
+        </tr>
+        <tr>
+            <td>English M</td>
+            <td>pronoun_perthousand_second</td>
+            <td>0.237</td>
+            <td class="sig-high">0.0019**</td>
+            <td>Moderate positive correlation</td>
+        </tr>
+        <tr>
+            <td>English M</td>
+            <td>pronoun_first_perthousand_plur</td>
+            <td>0.214</td>
+            <td class="sig-high">0.0050**</td>
+            <td>Weak positive correlation</td>
+        </tr>
+    </tbody>
+</table>
 
-  <h2>8. Statistical Summary</h2>
-  <p><strong>Significance Levels:</strong></p>
-  <ul>
-      <li><span class="significance sig-high">***</span> p &lt; 0.001 (highly significant)</li>
-      <li><span class="significance sig-high">**</span> p &lt; 0.01 (very significant)</li>
-      <li><span class="significance sig-medium">*</span> p &lt; 0.05 (significant)</li>
-      <li><span class="significance sig-none">ns</span> p ≥ 0.05 (not significant)</li>
-  </ul>
+<h3>3.2 Statistical Interpretation</h3>
 
-  <div class="footer">
-      <p><strong>Note:</strong> This comprehensive analysis reveals consistent patterns across all demographic groups, suggesting that pronoun usage serves as a universal linguistic marker of professional positioning in online tutoring markets. Higher-priced tutors consistently use less self-referential language and adopt more student-focused communication strategies. The pattern holds across cultures and genders, with some variation in effect sizes.</p>
-      <p><strong>Complete Coverage:</strong> All demographic groups now included with individual analyses showing consistent cross-cultural patterns.</p>
-      <p><em>Generated from statistical analysis of online language tutor profiles • All prices in Hong Kong Dollars (HKD) • Sample sizes: English Male (n=171), English Female (n=156), Chinese Female (n=170), Chinese Male (n=150), Chinese Gender Comparison (n=300)</em></p>
-  </div>
+<p><strong>First-Person Pronouns and Pricing:</strong> Across all groups, increased use of first-person pronouns (particularly singular forms) correlates negatively with pricing. For English female tutors, this relationship is most pronounced (r = -0.226, p = 0.0046), indicating that tutors charging higher rates use approximately 23% less "I/me" language per standard deviation increase in price. This pattern suggests that premium-priced tutors adopt more client-focused rather than self-focused communication styles.</p>
+
+<p><strong>Second-Person Pronouns:</strong> English male tutors show a significant positive correlation between second-person pronoun usage and pricing (r = 0.237, p = 0.0019). This finding indicates that higher-priced male English tutors employ more "you"-focused language, emphasizing student engagement and personalization.</p>
+
+<p><strong>Plural First-Person Pronouns:</strong> The positive correlation between "we/us" usage and pricing among English male tutors (r = 0.214, p = 0.0050) suggests that collaborative framing ("we will learn together") may be a pricing strategy among premium tutors.</p>
+
+<h2>4. Between-Group Comparisons</h2>
+
+<h3>4.1 Language Differences (ANOVA)</h3>
+
+<p>One-way ANOVA reveals highly significant differences between English and Chinese tutors across multiple dimensions:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable</th>
+            <th>F-statistic</th>
+            <th>p-value</th>
+            <th>Effect Interpretation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Price</td>
+            <td>87.380</td>
+            <td class="sig-high">< 0.0001***</td>
+            <td>English tutors charge significantly more</td>
+        </tr>
+        <tr>
+            <td>perthousand_all_pronouns</td>
+            <td>27.729</td>
+            <td class="sig-high">< 0.0001***</td>
+            <td>English tutors use more pronouns overall</td>
+        </tr>
+        <tr>
+            <td>first_pronoun_perthousand</td>
+            <td>38.591</td>
+            <td class="sig-high">< 0.0001***</td>
+            <td>English tutors use more first-person pronouns</td>
+        </tr>
+        <tr>
+            <td>pronoun_perthousand_sing</td>
+            <td>3288.439</td>
+            <td class="sig-high">< 0.0001***</td>
+            <td>Extremely large language-specific difference</td>
+        </tr>
+    </tbody>
+</table>
+
+<p>The extraordinarily high F-statistic for singular first-person pronouns (F = 3288.44) reflects fundamental linguistic differences: English grammar requires explicit subject pronouns, while Chinese allows pro-drop (subject omission). This grammatical distinction accounts for the 50-fold difference in singular pronoun density between language groups.</p>
+
+<h3>4.2 Gender Differences Within Languages</h3>
+
+<p>Independent samples t-tests (with balanced samples of n=150 per gender) reveal significant gender effects within each language group:</p>
+
+<h4>Chinese Tutors: Male vs. Female</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable</th>
+            <th>Male Mean</th>
+            <th>Female Mean</th>
+            <th>t-test p</th>
+            <th>Mann-Whitney p</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Price</td>
+            <td>134.85</td>
+            <td>156.93</td>
+            <td class="sig-high">0.0088**</td>
+            <td class="sig-high">0.0004***</td>
+        </tr>
+        <tr>
+            <td>perthousand_all_pronouns</td>
+            <td>95.35</td>
+            <td>103.70</td>
+            <td class="sig-high">0.0083**</td>
+            <td class="sig-high">0.0035**</td>
+        </tr>
+        <tr>
+            <td>first_pronoun_perthousand</td>
+            <td>62.25</td>
+            <td>68.25</td>
+            <td class="sig-medium">0.0181*</td>
+            <td class="sig-medium">0.0110*</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Interpretation:</strong> Female Chinese tutors charge significantly higher rates (16% premium, p = 0.0088) and use more pronouns overall. This gender pricing gap may reflect market positioning, experience levels, or perceived expertise differences.</p>
+
+<h4>English Tutors: Male vs. Female</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>Variable</th>
+            <th>Male Mean</th>
+            <th>Female Mean</th>
+            <th>t-test p</th>
+            <th>Mann-Whitney p</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Price</td>
+            <td>208.51</td>
+            <td>190.15</td>
+            <td class="sig-medium">0.0398*</td>
+            <td>0.1700 ns</td>
+        </tr>
+        <tr>
+            <td>first_pronoun_perthousand</td>
+            <td>71.65</td>
+            <td>80.22</td>
+            <td class="sig-high">0.0005***</td>
+            <td class="sig-high">0.0006***</td>
+        </tr>
+        <tr>
+            <td>pronoun_perthousand_sing</td>
+            <td>65.95</td>
+            <td>73.93</td>
+            <td class="sig-high">0.0014**</td>
+            <td class="sig-high">0.0016**</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>Interpretation:</strong> Male English tutors charge approximately 10% more than females (p = 0.0398), reversing the pattern observed among Chinese tutors. Female English tutors use significantly more first-person pronouns (12% higher, p = 0.0005), suggesting gender-differentiated communication styles within the English tutoring market.</p>
+
+<h2>5. Discussion and Implications</h2>
+
+<h3>5.1 Linguistic Markers of Professional Positioning</h3>
+
+<p>The consistent negative correlation between first-person pronoun usage and pricing across demographic groups suggests that pronoun choice functions as a linguistic marker of professional positioning. Tutors commanding premium rates systematically reduce self-referential language, potentially signaling:</p>
+
+<ul>
+    <li><strong>Client-centered orientation:</strong> Shifting focus from self-promotion to student needs</li>
+    <li><strong>Professional authority:</strong> Reduced need for explicit self-justification</li>
+    <li><strong>Objective expertise framing:</strong> Presenting qualifications as facts rather than personal claims</li>
+</ul>
+
+<h3>5.2 Gender and Pricing Dynamics</h3>
+
+<p>The opposing gender pricing gaps between Chinese (female premium) and English (male premium) tutoring markets warrant further investigation. Possible explanations include:</p>
+
+<ul>
+    <li>Differential native speaker advantages by gender within each language market</li>
+    <li>Cultural expectations regarding language teaching roles</li>
+    <li>Self-selection into online tutoring platforms by gender and language</li>
+</ul>
+
+<h3>5.3 Methodological Considerations</h3>
+
+<p>Several limitations should be noted:</p>
+
+<ul>
+    <li><strong>Cross-sectional design:</strong> Causal relationships cannot be established</li>
+    <li><strong>Self-selection bias:</strong> Tutors choose their own pricing and language</li>
+    <li><strong>Platform effects:</strong> Data from a single tutoring platform may not generalize</li>
+    <li><strong>Confounding variables:</strong> Experience, credentials, and ratings not controlled</li>
+</ul>
+
+<h2>6. Conclusions</h2>
+
+<p>This analysis provides robust statistical evidence that pronoun usage patterns correlate systematically with pricing strategies in online language tutoring. The negative association between first-person pronoun density and hourly rates suggests that linguistic self-presentation serves as a strategic tool for professional positioning. Gender and language differences further indicate that these patterns operate within culturally and linguistically specific contexts.</p>
+
+<p>Future research should employ longitudinal designs to examine whether pronoun usage changes causally affect pricing success, and should incorporate additional covariates such as tutor experience, educational credentials, and student satisfaction ratings to isolate the independent effect of linguistic style on market outcomes.</p>
+
+<div class="footer">
+    <p><strong>Significance Levels:</strong> * p < 0.05, ** p < 0.01, *** p < 0.001, ns = not significant</p>
+    <p>Report prepared for linguistic analysis | Dataset: 651 online language tutors | Analysis date: January 2026</p>
+</div>
+
 </body>
 </html>
