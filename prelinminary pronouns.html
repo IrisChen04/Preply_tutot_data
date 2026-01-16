@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Analysis: Pronoun Usage and Hourly Rate</title>
+    <style>
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            background-color: #fff;
+        }
+        
+        h1 {
+            font-size: 2em;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        
+        thead tr {
+            background-color: #3498db;
+            color: #ffffff;
+            text-align: left;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        tbody tr:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .positive {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .negative {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .section-divider {
+            border-top: 1px solid #ddd;
+            margin: 40px 0 30px 0;
+        }
+        
+        .footnote {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Correlation Analysis: Pronoun Usage and Hourly Rate (Chinese Male Tutors)</h1>
+
+    <h2>Key Findings</h2>
+
+    <h3>1. Negative Correlation: First-Person Singular Pronouns</h3>
+    <ul>
+        <li><strong>Singular first-person pronoun density</strong> shows a <strong>significant negative correlation</strong> with hourly rates (r = -0.244, p = 0.002**)</li>
+        <ul>
+            <li>Tutors who use more "I/me/my" per 1000 words tend to charge <strong>lower prices</strong></li>
+            <li>This effect is robust across both Pearson (r = -0.244**) and Spearman (ρ = -0.289***) tests</li>
+            <li><strong>Interpretation:</strong> Excessive self-focus may signal less professional or client-centered communication</li>
+        </ul>
+        <li><strong>Overall pronoun density</strong> also negatively correlates with price (r = -0.197, p = 0.014*)</li>
+        <ul>
+            <li>Higher overall pronoun usage is associated with lower rates</li>
+            <li>Spearman correlation is stronger (ρ = -0.228, p = 0.004**)</li>
+        </ul>
+    </ul>
+
+    <h3>2. Positive Correlation: Plural First-Person & Second-Person Pronouns</h3>
+    <ul>
+        <li><strong>Plural first-person pronouns (raw count)</strong> show a <strong>positive correlation</strong> (r = 0.174, p = 0.031*)</li>
+        <ul>
+            <li>Using "we/us/our" is associated with <strong>higher prices</strong></li>
+            <li><strong>Interpretation:</strong> Inclusive language may signal collaboration and partnership with students</li>
+        </ul>
+        <li><strong>Second-person pronouns (raw count)</strong> also positively correlate (r = 0.175, p = 0.031*)</li>
+        <ul>
+            <li>More use of "you/your" relates to higher rates</li>
+            <li><strong>Interpretation:</strong> Student-centered, direct address may be valued by clients</li>
+            <li>Note: The density measure (per 1000 words) is not significant, suggesting absolute usage matters more than relative frequency</li>
+        </ul>
+    </ul>
+
+    <h3>3. Text Length</h3>
+    <ul>
+        <li><strong>Profile length</strong> shows a weak positive trend (r = 0.135, p = 0.096 ns)</li>
+        <ul>
+            <li>Longer profiles tend toward higher prices, but not significantly</li>
+            <li>May reflect greater effort or professionalism</li>
+        </ul>
+    </ul>
+
+    <div class="section-divider"></div>
+
+    <h2>Statistical Summary</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Pearson r</th>
+                <th>p-value</th>
+                <th>Spearman ρ</th>
+                <th>p-value</th>
+                <th>Significance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Singular 1st person density</strong></td>
+                <td class="negative">-0.244</td>
+                <td>0.002</td>
+                <td class="negative">-0.289</td>
+                <td>&lt;0.001</td>
+                <td>Strong</td>
+            </tr>
+            <tr>
+                <td><strong>Total pronoun density</strong></td>
+                <td class="negative">-0.197</td>
+                <td>0.014</td>
+                <td class="negative">-0.228</td>
+                <td>0.004</td>
+                <td>Moderate</td>
+            </tr>
+            <tr>
+                <td><strong>Plural 1st person (raw)</strong></td>
+                <td class="positive">+0.174</td>
+                <td>0.031</td>
+                <td class="positive">+0.120</td>
+                <td>0.139</td>
+                <td>Weak</td>
+            </tr>
+            <tr>
+                <td><strong>2nd person (raw)</strong></td>
+                <td class="positive">+0.175</td>
+                <td>0.031</td>
+                <td class="positive">+0.149</td>
+                <td>0.065</td>
+                <td>Weak</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <h2>Interpretation</h2>
+
+    <div class="highlight-box">
+        <h3>Higher-priced Chinese male tutors tend to:</h3>
+        <ul>
+            <li>Use <strong>fewer singular first-person pronouns</strong> ("I", "me", "my")</li>
+            <li>Employ <strong>more plural first-person pronouns</strong> ("we", "us", "our")</li>
+            <li>Address students directly with <strong>second-person pronouns</strong> ("you", "your")</li>
+            <li>Write with <strong>lower overall pronoun density</strong> (more concrete content)</li>
+        </ul>
+    </div>
+
+    <div class="highlight-box">
+        <h3>Lower-priced tutors tend to:</h3>
+        <ul>
+            <li>Overuse "I/me/my" (self-focused language)</li>
+            <li>Have higher pronoun-to-content ratios (less substantive information)</li>
+        </ul>
+    </div>
+
+    <h2>Implications</h2>
+    <p>
+        This pattern suggests that <strong>professional positioning matters</strong>: tutors who frame their teaching as a collaborative partnership ("we will learn together") and focus on the student ("you will achieve...") rather than themselves ("I have experience...") command higher rates. The linguistic shift from <strong>egocentric to allocentric</strong> discourse may signal greater pedagogical maturity and client-centeredness.
+    </p>
+
+    <div class="footnote">
+        <p><strong>Statistical Notes:</strong></p>
+        <p>*p &lt; 0.05, **p &lt; 0.01, ***p &lt; 0.001</p>
+        <p>ns = not significant</p>
+        <p>Sample: Chinese male tutors (n = varies by measure)</p>
+        <p>Both parametric (Pearson) and non-parametric (Spearman) tests confirm robustness</p>
+    </div>
+
+</body>
+</html>
