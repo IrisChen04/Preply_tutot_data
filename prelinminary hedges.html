@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedge Analysis Report</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #666;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        
+        .stats-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .hedge-list {
+            background-color: #fafafa;
+            border-left: 4px solid #666;
+            padding: 10px 15px;
+            margin: 10px 0;
+        }
+        
+        .example-box {
+            background-color: #f0f8ff;
+            border: 1px solid #4682b4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        .example-text {
+            background-color: #e6f3ff;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #4682b4;
+            font-family: Georgia, serif;
+        }
+        
+        .hedge-highlight {
+            background-color: #ffff99;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .significant {
+            background-color: #ffe6e6;
+            font-weight: bold;
+        }
+        
+        .not-significant {
+            background-color: #e6f3e6;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .column {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Hedge Analysis Report</h1>
+        <p><em>A Comprehensive Analysis of Hedging Patterns by Gender and Language</em></p>
+    </div>
+
+    <div class="section">
+        <h2>INTRODUCTION: UNDERSTANDING HEDGES</h2>
+        <div class="stats-box">
+            <p><strong>What are Hedges?</strong> Hedges are linguistic devices that express uncertainty, politeness, or tentativeness in communication. They allow speakers to soften statements, show modesty, or indicate degrees of certainty.</p>
+        </div>
+        
+        <h3>Examples of Hedges in Context</h3>
+        <div class="example-box">
+            <strong>1. "About" - Approximation and Uncertainty</strong>
+            <div class="example-text">
+                "I have <span class="hedge-highlight">about</span> two years of experience with teaching individuals how to become an English speaker." - Tyesh B.
+            </div>
+            <div class="example-text">
+                "I've been teaching Chinese for <span class="hedge-highlight">about</span> two years." - Kai Y.
+            </div>
+            <p><em>Function: Indicates approximate time periods, showing modesty about exact experience.</em></p>
+        </div>
+
+        <div class="example-box">
+            <strong>2. "Would" - Conditional Politeness</strong>
+            <div class="example-text">
+                "I <span class="hedge-highlight">would</span> love to meet you, and hear your story." - Rose R.
+            </div>
+            <div class="example-text">
+                "I <span class="hedge-highlight">would</span> be more than happy to tutor you on your speaking skills." - James J.
+            </div>
+            <p><em>Function: Expresses polite willingness and creates a softer, more approachable tone.</em></p>
+        </div>
+
+        <div class="example-box">
+            <strong>3. "Around" - Approximation</strong>
+            <div class="example-text">
+                "I have been teaching for <span class="hedge-highlight">around</span> 8 years!" - Kathryn R.
+            </div>
+            <div class="example-text">
+                "I have <span class="hedge-highlight">around</span> 5 years of on-line ESL teaching experience." - Charles H.
+            </div>
+            <p><em>Function: Provides approximate quantities, avoiding overly precise claims.</em></p>
+        </div>
+
+        <div class="example-box">
+            <strong>4. "Apparent" - Qualified Certainty</strong>
+            <div class="example-text">
+                "Learning is magnified by high Repetition in a relaxed friendly cheerful optimistic environment... so it distracts the conscious mind from focus on 'trying to learn' so teaching goes direct into the Unconscious mind. Thats done by <span class="hedge-highlight">apparent</span> 'fun learning' for all age groups." - John W.
+            </div>
+            <p><em>Function: Suggests something seems to be the case without absolute certainty.</em></p>
+        </div>
+
+        <div class="example-box">
+            <strong>5. "Possibly" - Uncertainty</strong>
+            <div class="example-text">
+                "I am also currently learning Chinese, so I can <span class="hedge-highlight">possibly</span> help with Chinese students improving their English." - Daniel M.
+            </div>
+            <p><em>Function: Expresses potential ability without making definitive promises.</em></p>
+        </div>
+
+        <div class="example-box">
+            <strong>6. "Mainly" - Qualification</strong>
+            <div class="example-text">
+                "For each different level of students, we will have different materials for lessons, we will talk like friends and laughs a lot! <span class="hedge-highlight">Mainly</span> is for you to feel comfortable to talk." - Liting H.
+            </div>
+            <p><em>Function: Indicates primary purpose while allowing for other possibilities.</em></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>PART 1: HEDGE ANALYSIS BY GENDER</h2>
+        
+        <h3>1.1 Overall Statistics by Gender</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Gender</th>
+                    <th>Hedge Count (Mean)</th>
+                    <th>Hedge Count (Median)</th>
+                    <th>Total Hedges</th>
+                    <th>Std Dev</th>
+                    <th>Sentence Count (Mean)</th>
+                    <th>Total Sentences</th>
+                    <th>Sample Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Female</strong></td>
+                    <td>0.0337</td>
+                    <td>0.0</td>
+                    <td>11</td>
+                    <td>0.1808</td>
+                    <td>16.3160</td>
+                    <td>5319</td>
+                    <td>326</td>
+                </tr>
+                <tr>
+                    <td><strong>Male</strong></td>
+                    <td>0.0338</td>
+                    <td>0.0</td>
+                    <td>11</td>
+                    <td>0.1811</td>
+                    <td>17.8369</td>
+                    <td>5797</td>
+                    <td>325</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.2 Hedge Type Distribution by Gender</h3>
+        <div class="two-column">
+            <div class="column">
+                <div class="hedge-list">
+                    <strong>Male Tutors - Top Hedges:</strong><br>
+                    around: 5<br>
+                    about: 1<br>
+                    would: 1<br>
+                    apparent: 1<br>
+                    possibly: 1<br>
+                    I wouldn't: 1
+                </div>
+            </div>
+            <div class="column">
+                <div class="hedge-list">
+                    <strong>Female Tutors - Top Hedges:</strong><br>
+                    would: 4<br>
+                    about: 2<br>
+                    around: 2<br>
+                    mainly: 1<br>
+                    wont: 1
+                </div>
+            </div>
+        </div>
+
+        <h3>1.3 Gender Hedge Comparison</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hedge</th>
+                    <th>Male Count</th>
+                    <th>Female Count</th>
+                    <th>Total</th>
+                    <th>Male %</th>
+                    <th>Female %</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>around</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>7</td>
+                    <td>50.0%</td>
+                    <td>20.0%</td>
+                </tr>
+                <tr>
+                    <td>would</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>10.0%</td>
+                    <td>40.0%</td>
+                </tr>
+                <tr>
+                    <td>about</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>10.0%</td>
+                    <td>20.0%</td>
+                </tr>
+                <tr>
+                    <td>mainly</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0.0%</td>
+                    <td>10.0%</td>
+                </tr>
+                <tr>
+                    <td>possibly</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>10.0%</td>
+                    <td>0.0%</td>
+                </tr>
+                <tr>
+                    <td>I wouldn't</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>10.0%</td>
+                    <td>0.0%</td>
+                </tr>
+                <tr>
+                    <td>wont</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0.0%</td>
+                    <td>10.0%</td>
+                </tr>
+                <tr>
+                    <td>apparent</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>10.0%</td>
+                    <td>0.0%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>1.4 Statistical Test Results (T-test by Gender)</h3>
+        <div class="stats-box not-significant">
+            <strong>Results:</strong><br>
+            Male participants: n=325<br>
+            Female participants: n=326<br>
+            T-statistic: -0.3511<br>
+            P-value: 0.7257<br>
+            <strong>Significant at α=0.05: No</strong>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>PART 2: HEDGE ANALYSIS BY LANGUAGE</h2>
+        
+        <h3>2.1 Overall Statistics by Language</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Language</th>
+                    <th>Hedge Count (Mean)</th>
+                    <th>Hedge Count (Median)</th>
+                    <th>Total Hedges</th>
+                    <th>Std Dev</th>
+                    <th>Sentence Count (Mean)</th>
+                    <th>Total Sentences</th>
+                    <th>Sample Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Chinese</strong></td>
+                    <td>0.0216</td>
+                    <td>0.0</td>
+                    <td>7</td>
+                    <td>0.1456</td>
+                    <td>17.6481</td>
+                    <td>5718</td>
+                    <td>324</td>
+                </tr>
+                <tr>
+                    <td><strong>English</strong></td>
+                    <td>0.0460</td>
+                    <td>0.0</td>
+                    <td>15</td>
+                    <td>0.2098</td>
+                    <td>16.5031</td>
+                    <td>5380</td>
+                    <td>326</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.2 Hedge Type Distribution by Language</h3>
+        <div class="two-column">
+            <div class="column">
+                <div class="hedge-list">
+                    <strong>Chinese Tutors - Top Hedges:</strong><br>
+                    around: 3<br>
+                    about: 1<br>
+                    mainly: 1<br>
+                    wont: 1
+                </div>
+            </div>
+            <div class="column">
+                <div class="hedge-list">
+                    <strong>English Tutors - Top Hedges:</strong><br>
+                    would: 5<br>
+                    around: 4<br>
+                    about: 2<br>
+                    apparent: 1<br>
+                    possibly: 1<br>
+                    I wouldn't: 1
+                </div>
+            </div>
+        </div>
+
+        <h3>2.3 Language Hedge Comparison</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hedge</th>
+                    <th>Chinese Count</th>
+                    <th>English Count</th>
+                    <th>Total</th>
+                    <th>Chinese %</th>
+                    <th>English %</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>around</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>7</td>
+                    <td>50.00%</td>
+                    <td>28.57%</td>
+                </tr>
+                <tr>
+                    <td>would</td>
+                    <td>0</td>
+                    <td>5</td>
+                    <td>5</td>
+                    <td>0.00%</td>
+                    <td>35.71%</td>
+                </tr>
+                <tr>
+                    <td>about</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>16.67%</td>
+                    <td>14.29%</td>
+                </tr>
+                <tr>
+                    <td>mainly</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>16.67%</td>
+                    <td>0.00%</td>
+                </tr>
+                <tr>
+                    <td>possibly</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0.00%</td>
+                    <td>7.14%</td>
+                </tr>
+                <tr>
+                    <td>I wouldn't</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0.00%</td>
+                    <td>7.14%</td>
+                </tr>
+                <tr>
+                    <td>wont</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>16.67%</td>
+                    <td>0.00%</td>
+                </tr>
+                <tr>
+                    <td>apparent</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0.00%</td>
+                    <td>7.14%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2.4 Statistical Test Results (T-test by Language)</h3>
+        <div class="stats-box significant">
+            <strong>Results:</strong><br>
+            Chinese participants: n=324<br>
+            English participants: n=326<br>
+            T-statistic: -2.2834<br>
+            P-value: 0.0227<br>
+            <strong>Significant at α=0.05: Yes</strong>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>PART 3: COMBINED ANALYSIS (Gender × Language)</h2>
+        
+        <h3>3.1 Statistics by Language and Gender</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Language</th>
+                    <th>Gender</th>
+                    <th>Hedge Count (Mean)</th>
+                    <th>Hedge Count (Median)</th>
+                    <th>Total Hedges</th>
+                    <th>Std Dev</th>
+                    <th>Sample Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="2"><strong>Chinese</strong></td>
+                    <td>Female</td>
+                    <td>0.0235</td>
+                    <td>0.0</td>
+                    <td>4</td>
+                    <td>0.1520</td>
+                    <td>170</td>
+                </tr>
+                <tr>
+                    <td>Male</td>
+                    <td>0.0195</td>
+                    <td>0.0</td>
+                    <td>3</td>
+                    <td>0.1387</td>
+                    <td>154</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>English</strong></td>
+                    <td>Female</td>
+                    <td>0.0449</td>
+                    <td>0.0</td>
+                    <td>7</td>
+                    <td>0.2077</td>
+                    <td>156</td>
+                </tr>
+                <tr>
+                    <td>Male</td>
+                    <td>0.0471</td>
+                    <td>0.0</td>
+                    <td>8</td>
+                    <td>0.2124</td>
+                    <td>170</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.2 Top Hedges by Each Group</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="hedge-list">
+                <strong>Chinese Male:</strong><br>
+                around: 2<br>
+                about: 1
+            </div>
+            <div class="hedge-list">
+                <strong>Chinese Female:</strong><br>
+                around: 1<br>
+                mainly: 1<br>
+                wont: 1
+            </div>
+            <div class="hedge-list">
+                <strong>English Male:</strong><br>
+                around: 3<br>
+                would: 1<br>
+                apparent: 1<br>
+                possibly: 1<br>
+                I wouldn't: 1
+            </div>
+            <div class="hedge-list">
+                <strong>English Female:</strong><br>
+                would: 4<br>
+                about: 2<br>
+                around: 1
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>PART 4: CHI-SQUARE TESTS FOR TOP HEDGES</h2>
+        
+        <h3>4.1 Chi-Square Tests by Gender</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hedge</th>
+                    <th>Male Count (%)</th>
+                    <th>Female Count (%)</th>
+                    <th>Chi-square</th>
+                    <th>P-value</th>
+                    <th>Significant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="not-significant">
+                    <td>around</td>
+                    <td>5 (50.00%)</td>
+                    <td>2 (20.00%)</td>
+                    <td>0.8791</td>
+                    <td>0.3484</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>would</td>
+                    <td>1 (10.00%)</td>
+                    <td>4 (40.00%)</td>
+                    <td>1.0667</td>
+                    <td>0.3017</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>about</td>
+                    <td>1 (10.00%)</td>
+                    <td>2 (20.00%)</td>
+                    <td>0.0000</td>
+                    <td>1.0000</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>mainly</td>
+                    <td>0 (0.00%)</td>
+                    <td>1 (10.00%)</td>
+                    <td>0.0000</td>
+                    <td>1.0000</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>possibly</td>
+                    <td>1 (10.00%)</td>
+                    <td>0 (0.00%)</td>
+                    <td>0.0000</td>
+                    <td>1.0000</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>4.2 Chi-Square Tests by Language</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hedge</th>
+                    <th>Chinese Count (%)</th>
+                    <th>English Count (%)</th>
+                    <th>Chi-square</th>
+                    <th>P-value</th>
+                    <th>Significant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="not-significant">
+                    <td>around</td>
+                    <td>3 (50.00%)</td>
+                    <td>4 (28.57%)</td>
+                    <td>0.1675</td>
+                    <td>0.6824</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>would</td>
+                    <td>0 (0.00%)</td>
+                    <td>5 (35.71%)</td>
+                    <td>1.2698</td>
+                    <td>0.2598</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>about</td>
+                    <td>1 (16.67%)</td>
+                    <td>2 (14.29%)</td>
+                    <td>0.0000</td>
+                    <td>1.0000</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>mainly</td>
+                    <td>1 (16.67%)</td>
+                    <td>0 (0.00%)</td>
+                    <td>0.2005</td>
+                    <td>0.6543</td>
+                    <td>No</td>
+                </tr>
+                <tr class="not-significant">
+                    <td>possibly</td>
+                    <td>0 (0.00%)</td>
+                    <td>1 (7.14%)</td>
+                    <td>0.0000</td>
+                    <td>1.0000</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>SUMMARY OF FINDINGS</h2>
+        <div class="stats-box">
+            <strong>Key Results:</strong>
+            <ul>
+                <li><strong>Gender Analysis:</strong> No significant difference in hedge usage between male and female tutors (p = 0.7257)</li>
+                <li><strong>Language Analysis:</strong> Significant difference in hedge usage between Chinese and English tutors (p = 0.0227), with English tutors using more hedges</li>
+                <li><strong>Most Common Hedges:</strong> "around", "would", and "about" are the most frequently used hedge words across all groups</li>
+                <li><strong>Individual Hedge Analysis:</strong> No individual hedge word shows significant association with gender or language when tested separately</li>
+                <li><strong>Functional Patterns:</strong> Hedges serve different communicative functions - approximation ("about", "around"), politeness ("would"), and uncertainty ("possibly", "apparent")</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
